@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Local Vault</title>
+    <script src="https://cdn/tailwindcss.com"></script>
+    <style>
+        body {
+            width: 380px;
+            font-family: 'Inter', sans-serif;
+            background-color: #BADFDB; /* New background color */
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="p-4">
+
+<div class="w-full">
+    <!-- Master Password Setup View -->
+    <div id="setup-view" class="text-center">
+        <h1 class="text-2xl font-bold text-slate-800 mb-2">Password Vault</h1>
+        <p class="text-sm text-slate-600 mb-4">Create a strong master password to secure your vault. This password is the only way to access your data and cannot be recovered.</p>
+        <input type="password" id="setup-master-password" placeholder="Enter Master Password" class="w-full bg-white border border-slate-300 rounded-md p-2 mb-2 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:outline-none text-center">
+        <input type="password" id="confirm-master-password" placeholder="Confirm Master Password" class="w-full bg-white border border-slate-300 rounded-md p-2 mb-4 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:outline-none text-center">
+        <button id="save-master-password-btn" class="w-full text-white rounded-md py-2 font-bold transition-colors" style="background-color: #FFA4A4;">Create Vault</button>
+    </div>
+
+    <!-- Master Password Login View -->
+    <div id="login-view" class="hidden text-center">
+        <h1 class="text-2xl font-bold text-slate-800 mb-2">Password Vault</h1>
+        <p class="text-sm text-slate-600 mb-4">Enter your master password to decrypt your data.</p>
+        <input type="password" id="login-master-password" placeholder="Enter Master Password" class="w-full bg-white border border-slate-300 rounded-md p-2 mb-4 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:outline-none text-center">
+        <button id="login-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-md py-2 font-bold transition-colors">Unlock</button>
+    </div>
+
+    <!-- Main Application View -->
+    <div id="main-view" class="hidden">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-xl font-bold text-slate-800">Your Credentials</h1>
+            <button id="logout-btn" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-md px-3 py-1 font-semibold transition-colors">Lock Vault</button>
+        </div>
+
+        <!-- Add New Credential Form -->
+        <div id="add-credential-form" class="bg-white/60 p-3 rounded-lg mb-4 text-slate-800">
+            <h2 class="font-bold mb-2 text-teal-700">Add New Credential</h2>
+            <div class="flex items-center mb-2">
+                 <input type="text" id="website-url" placeholder="Website URL" class="w-full bg-white border border-slate-300 rounded-l-md p-2 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+                 <button id="get-url-btn" title="Get current tab's URL" class="bg-teal-600 hover:bg-teal-700 p-2 rounded-r-md text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                 </button>
+            </div>
+            <input type="text" id="username" placeholder="Username / Email" class="w-full bg-white border border-slate-300 rounded-md p-2 mb-2 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+            <input type="password" id="password" placeholder="Password" class="w-full bg-white border border-slate-300 rounded-md p-2 mb-2 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+            <button id="add-credential-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-md py-2 font-bold transition-colors">Save Credential</button>
+        </div>
+
+        <!-- Stored Passwords List -->
+        <div id="credentials-list" class="space-y-2 max-h-64 overflow-y-auto pr-2 text-slate-800">
+            <!-- Credentials will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300">
+      Copied to clipboard!
+    </div>
+
+
+    <script src="popup.js"></script>
+</div>
+</body>
+</html>
+
+
